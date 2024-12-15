@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=414, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Загрязнения - EcoPetro</title>
+    <!-- Подключение Yandex Maps API -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=<YOUR_API_KEY>&lang=ru_RU" type="text/javascript"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #F0F8FF; /* Светло-голубой для ассоциации с чистотой */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: #2E8B57;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 0.9em;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            transition: background-color 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: #3CB371;
+            border-radius: 5px;
+        }
+        .header {
+            width: 95%;
+            padding: 10px;
+            text-align: center;
+            background-color: #2E8B57; /* Темно-зелёный цвет символизирует процветание */
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        #map {
+            width: 100%;
+            height: 40vh;
+            border: 2px solid #8FBC8F; /* Цвет рамки карты - зелёный */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 10px 0;
+        }
+        .footer {
+            width: 95%;
+            text-align: center;
+            padding: 10px;
+            background-color: #2E8B57;
+            color: white;
+            font-size: 0.8em;
+            margin-top: auto;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            margin: 10px 0;
+        }
+        .buttons button {
+            background-color: #2E8B57;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .buttons button:hover {
+            background-color: #3CB371;
+        }
+        .info-box {
+            margin: 20px auto;
+            padding: 15px;
+            background-color: #E6F7E6;
+            border: 1px solid #8FBC8F;
+            border-radius: 10px;
+            max-width: 90%;
+            font-size: 1em;
+            color: #2E8B57;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигационная панель -->
+    <div class="navbar">
+        <a href="main.html">Главная</a>
+        <a href="garb.html">Мусор</a>
+        <a href="profile.html">Профиль</a>
+    </div>
+
+    <!-- Шапка сайта -->
+    <div class="header">
+        <h1>Загрязнения</h1>
+    </div>
+
+    <!-- Карта -->
+    <div id="map"></div>
+
+    <div class="buttons">
+        <button>Сильные загрязнения</button>
+        <button>Средние загрязнения</button>
+        <button>Чистый воздух</button>
+    </div>
+
+    <div class="info-box">
+        <h2>Загрязнение воздуха в Петропавловске</h2>
+        <p>Петропавловск сталкивается с проблемой загрязнения воздуха, вызванного промышленными выбросами, выхлопными газами и недостаточной переработкой отходов. Это негативно влияет на здоровье жителей и окружающую среду.</p>
+        <p>EcoPetro активно работает над решением этой проблемы, внедряя современные технологии мониторинга и геймификации для вовлечения граждан. Вместе мы сможем снизить уровень загрязнений и сделать город чище!</p>
+    </div>
+
+    <!-- Подвал сайта -->
+    <div class="footer">
+        <p>&copy; 2024 EcoPetro | Вместе к чистому будущему!</p>
+    </div>
+
+    <!-- Скрипт для работы карты -->
+    <script>
+        ymaps.ready(init);
+
+        function init() {
+            // Создание карты с фокусом на Петропавловск
+            var map = new ymaps.Map("map", {
+                center: [54.88, 69.15], // Координаты центра города Петропавловск
+                zoom: 12
+            });
+
+            // Добавление трех квадратов разного размера и цвета на карте
+            var greenSquare = new ymaps.Polygon([
+                [
+                    [54.89, 69.14],
+                    [54.89, 69.18],
+                    [54.87, 69.18],
+                    [54.87, 69.14],
+                    [54.89, 69.14]
+                ]
+            ], {}, {
+                fillColor: '#00FF0040', // Зелёный с прозрачностью
+                strokeColor: '#00FF00',
+                strokeWidth: 2
+            });
+
+            var yellowSquare = new ymaps.Polygon([
+                [
+                    [54.87, 69.12],
+                    [54.87, 69.135],
+                    [54.865, 69.135],
+                    [54.865, 69.12],
+                    [54.87, 69.12]
+                ]
+            ], {}, {
+                fillColor: '#FFFF0040', // Жёлтый с прозрачностью
+                strokeColor: '#FFFF00',
+                strokeWidth: 2
+            });
+
+            var redSquare = new ymaps.Polygon([
+                [
+                    [54.85, 69.17],
+                    [54.85, 69.175],
+                    [54.845, 69.175],
+                    [54.845, 69.17],
+                    [54.85, 69.17]
+                ]
+            ], {}, {
+                fillColor: '#FF000040', // Красный с прозрачностью
+                strokeColor: '#FF0000',
+                strokeWidth: 2
+            });
+
+            map.geoObjects.add(greenSquare);
+            map.geoObjects.add(yellowSquare);
+            map.geoObjects.add(redSquare);
+        }
+    </script>
+</body>
+</html>

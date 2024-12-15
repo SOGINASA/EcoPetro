@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=414, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Новая страница - EcoPetro</title>
+    <!-- Подключение Yandex Maps API -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=<YOUR_API_KEY>&lang=ru_RU" type="text/javascript">    function addTrashLocation() {
+        alert('Функционал добавления места мусора будет реализован в будущем.');
+    }
+</script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #F0F8FF; /* Светло-голубой для ассоциации с чистотой */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: #2E8B57;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 0.9em;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            transition: background-color 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: #3CB371;
+            border-radius: 5px;
+        }
+        .header {
+            width: 95%;
+            padding: 10px;
+            text-align: center;
+            background-color: #2E8B57; /* Темно-зелёный цвет символизирует процветание */
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        #map {
+            width: 100%;
+            height: 40vh;
+            border: 2px solid #8FBC8F; /* Цвет рамки карты - зелёный */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 10px 0;
+        }
+        .info-box {
+            margin: 20px auto;
+            padding: 15px;
+            background-color: #E6F7E6;
+            border: 1px solid #8FBC8F;
+            border-radius: 10px;
+            max-width: 90%;
+            font-size: 1em;
+            color: #2E8B57;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .footer {
+            width: 95%;
+            text-align: center;
+            padding: 10px;
+            background-color: #2E8B57;
+            color: white;
+            font-size: 0.8em;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигационная панель -->
+    <div class="navbar">
+        <a href="main.html">Главная</a>
+        <a href="pollution.html">Загрязнения</a>
+        <a href="profile.html">Профиль</a>
+    </div>
+
+    <!-- Шапка сайта -->
+    <div class="header">
+        <h1>Мусор в городе</h1>
+    </div>
+
+    <!-- Карта -->
+    <div id="map"></div>
+
+    <!-- Кнопка добавить место мусора -->
+    <div style="display: flex; justify-content: center; margin: 10px 0;">
+        <button style="background-color: #2E8B57; color: white; border: none; border-radius: 15px; padding: 10px 20px; font-size: 1em; cursor: pointer; transition: background-color 0.3s ease;" onclick="addTrashLocation()">
+            Добавить место мусора
+        </button>
+    </div>
+
+    <!-- Объяснение проблемы и её решения -->
+    <div class="info-box">
+        <h2>Как мы решаем проблему?</h2>
+        <p>Проблема загрязнения мусором в Петропавловске требует активного подхода. Мы проводим мониторинг с помощью современных технологий, привлекаем общественность и инициируем акции по очистке города.</p>
+        <p>С помощью платформы EcoPetro каждый житель может отметить загрязнённые зоны на карте, участвовать в мероприятиях по уборке и следить за улучшением экологической ситуации.</p>
+        <p>Вместе мы сделаем наш город чище и здоровее!</p>
+    </div>
+
+    <!-- Подвал сайта -->
+    <div class="footer">
+        <p>&copy; 2024 EcoPetro | Вместе к чистому будущему!</p>
+    </div>
+
+    <!-- Скрипт для работы карты -->
+    <script>
+        ymaps.ready(init);
+
+        function init() {
+            // Создание карты с фокусом на Петропавловск
+            var map = new ymaps.Map("map", {
+                center: [54.88, 69.15], // Координаты центра города Петропавловск
+                zoom: 12
+            });
+
+            // Добавление 10 случайных точек на карте с описанием
+            const points = [
+                { coords: [54.87, 69.12], text: "Тут свалка уже!" },
+                { coords: [54.88, 69.13], text: "Слишком много мусора!" },
+                { coords: [54.87, 69.14], text: "Здесь требуется уборка!" },
+                { coords: [54.86, 69.15], text: "Мусорный завал обнаружен!" },
+                { coords: [54.87, 69.16], text: "Срочно нужна очистка!" },
+                { coords: [54.88, 69.17], text: "Скопление отходов." },
+                { coords: [54.87, 69.18], text: "Опасное загрязнение!" },
+                { coords: [54.86, 69.19], text: "Место выброса отходов!" },
+                { coords: [54.88, 69.20], text: "Участок загрязнения." },
+                { coords: [54.87, 69.21], text: "Требуется уборка территории!" }
+            ];
+
+            points.forEach(point => {
+                var placemark = new ymaps.Placemark(point.coords, {
+                    balloonContent: point.text,
+                    hintContent: point.text
+                }, {
+                    preset: 'islands#redDotIcon'
+                });
+                map.geoObjects.add(placemark);
+            });
+        }
+    </script>
+</body>
+</html>

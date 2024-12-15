@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoPetro - Экологический мониторинг</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="#">Главная</a>
+        <a href="pollution.html">Загрязнения</a>
+        <a href="garb.html">Мусор</a>
+        <a href="profile.html">Профиль</a>
+    </div>
+
+    <!-- Шапка сайта -->
+    <div class="header">
+        <h1>EcoPetro</h1>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="content">
+        <div class="description">
+            <p>Добро пожаловать на мобильную версию EcoPetro! Здесь вы можете следить за состоянием окружающей среды в Петропавловске. 
+            Наш сервис помогает отслеживать загрязнения воздуха и выявлять проблемные зоны с отходами.</p>
+            <div style="padding: 10px; margin: 10px 0; background-color: #E6F7E6; border: 1px solid #8FBC8F; border-radius: 5px; color: #2E8B57; font-weight: bold;">
+                Станьте частью решения! Отмечайте зоны загрязнения на карте или добавляйте информацию о собранном мусоре.
+            </div>
+        </div>
+        <div id="map"></div>
+        <div class="map-description">
+            Многофункциональная карта для удобства передвижения по городу.
+        </div>
+    </div>
+
+    <!-- Подвал сайта -->
+    <div class="footer">
+        <p>&copy; 2024 EcoPetro | Вместе к чистому будущему!</p>
+    </div>
+
+    <!-- Скрипт для работы карты -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=<bbedf925-4a42-423f-b41b-cc99d421a629>&lang=ru_RU" type="text/javascript"></script>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=414, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Профиль - EcoPetro</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #F0F8FF; /* Светло-голубой для ассоциации с чистотой */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: #2E8B57;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 0.9em;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            transition: background-color 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: #3CB371;
+            border-radius: 5px;
+        }
+        .header {
+            width: 95%;
+            padding: 10px;
+            text-align: center;
+            background-color: #2E8B57; /* Темно-зелёный цвет символизирует процветание */
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .profile-container {
+            margin: 20px auto;
+            padding: 15px;
+            background-color: #E6F7E6;
+            border: 1px solid #8FBC8F;
+            border-radius: 10px;
+            max-width: 90%;
+            font-size: 1em;
+            color: #2E8B57;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .footer {
+            width: 95%;
+            text-align: center;
+            padding: 10px;
+            background-color: #2E8B57;
+            color: white;
+            font-size: 0.8em;
+            margin-top: auto;
+        }
+        .profile-info {
+            margin: 10px 0;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+        .edit-profile {
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #2E8B57;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .edit-profile:hover {
+            background-color: #3CB371;
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигационная панель -->
+    <div class="navbar">
+        <a href="main.html">Главная</a>
+        <a href="pollution.html">Загрязнения</a>
+        <a href="garb.html">Мусор</a>
+    </div>
+
+    <!-- Шапка сайта -->
+    <div class="header">
+        <h1>Ваш Профиль</h1>
+    </div>
+
+    <!-- Контейнер профиля -->
+    <div class="profile-container">
+        <div style="width: 100px; height: 100px; border-radius: 50%; background-color: #8FBC8F; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center;">
+            <span style="color: white; font-size: 1.2em;">A</span>
+        </div>
+        <div class="profile-info">
+            <p><strong>Email:</strong> user@example.com</p>
+            <p><strong>Баллы:</strong> 120</p>
+            <p><strong>Участие в уборках:</strong> 5 мероприятий</p>
+        </div>
+        <button class="edit-profile">Редактировать профиль</button>
+    </div>
+
+    <!-- Подвал сайта -->
+    <div class="footer">
+        <p>&copy; 2024 EcoPetro | Вместе к чистому будущему!</p>
+    </div>
+</body>
+</html>
